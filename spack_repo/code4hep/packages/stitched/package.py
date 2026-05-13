@@ -1,0 +1,57 @@
+# Copyright Spack Project Developers. See COPYRIGHT file for details.
+#
+# SPDX-License-Identifier: (Apache-2.0 OR MIT)
+
+from spack_repo.builtin.build_systems.cmake import CMakePackage
+
+from spack.package import *
+
+
+class Stitched(CMakePackage):
+    """Stitched is a data processing framework extracted from CMSSW."""
+
+    homepage = "https://github.com/code4hep/stitched-alpha2"
+    git = "https://github.com/code4hep/stitched-alpha2.git"
+
+    maintainers("makortel")
+
+    license("Apache-2.0", checked_by="makortel")
+
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
+    depends_on("cmake@3.23:", type="build")
+
+    depends_on("boost@1.80.0: +program_options +filesystem +serialization")
+    depends_on("intel-tbb@2022.3.0:")
+    depends_on("python@3.12.4:")
+
+    # later versions would require changes in the namespacing in the Stitched's CMakeLists.txt
+    # TODO: figure out the exact upper limit
+    # TODO: upgrade CMakeLists.txt to support later tinyxml2
+    depends_on("tinyxml2@6.2.0")
+
+    depends_on("c4h-md5-git@1.0")
+    depends_on("clhep@2.4.7.2:")
+    depends_on("py-pybind11@3.0.2:")
+    depends_on("cpu-features@0.9.0: +shared")
+    depends_on("root@6.36.0:")
+    depends_on("util-linux-uuid@2.40:", when="platform=linux")
+
+    # TODO: InitRootHandlers has a runtime dependence on gdb
+
+    version("2026-05-18", commit="45e717a66f9bd50f7734a4863c39687f7946c651")
+
+    variant(
+        "cxxstd",
+        default="20",
+        values=("20", "23"),
+        multi=False,
+        description="C++ standard to use",
+    )
+
+    def cmake_args(self):
+        return [
+            self.define("CMAKE_CXX_STANDARD", self.spec.variants["cxxstd"].value),
+            self.define("CMAKE_CXX_STANDARD_REQUIRED", True),
+        ]
