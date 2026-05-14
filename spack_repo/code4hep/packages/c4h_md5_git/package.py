@@ -18,6 +18,9 @@ class C4hMd5Git(CMakePackage):
     # L. Peter Deutsch / Aladdin Enterprises MD5 license; zlib-like but not exact SPDX Zlib
     license("Permissive", checked_by="makortel")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("cmake@3.15:", type="build")
 
     version("main", branch="main")
