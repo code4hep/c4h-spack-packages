@@ -39,7 +39,10 @@ class Stitched(CMakePackage):
     depends_on("root@6.36.0:")
     depends_on("util-linux-uuid@2.40:", when="platform=linux")
 
-    # TODO: InitRootHandlers has a runtime dependence on gdb
+    # Needed for InitRootHandlers (in case of crashes)
+    # We could separate the stack tracing logic from InitRootHandlers
+    # and make the dependence on gdb optional
+    depends_on("gdb", type="run")
 
     version("2026-05-18", commit="45e717a66f9bd50f7734a4863c39687f7946c651")
 
