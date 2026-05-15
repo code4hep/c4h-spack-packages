@@ -21,6 +21,7 @@ class Stitched(CMakePackage):
     depends_on("cxx", type="build")
 
     depends_on("cmake@3.23:", type="build")
+    depends_on("pkg-config", type="build", when="platform=linux") # needed for util-linux-uuid
 
     depends_on("boost@1.80.0: +program_options +filesystem +serialization")
     depends_on("intel-tbb@2022.3.0:")
