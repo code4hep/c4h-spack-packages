@@ -32,7 +32,7 @@ class Stitched(CMakePackage):
     # TODO: upgrade CMakeLists.txt to support later tinyxml2
     depends_on("tinyxml2@6.2.0")
 
-    depends_on("c4h-md5-git@1.0")
+    depends_on("c4h-md5@1.0")
     depends_on("clhep@2.4.7.2:")
     depends_on("py-pybind11@3.0.2:")
     depends_on("cpu-features@0.9.0: +shared")
