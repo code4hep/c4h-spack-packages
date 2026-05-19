@@ -7,7 +7,7 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 from spack.package import *
 
 
-class C4hMd5Git(CMakePackage):
+class C4hMd5(CMakePackage):
     """Implementation of MD5"""
 
     homepage = "https://github.com/Dr15Jones/c4h_md5"
