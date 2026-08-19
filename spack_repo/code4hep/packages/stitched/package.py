@@ -33,7 +33,8 @@ class Stitched(CMakePackage):
     # TODO: upgrade CMakeLists.txt to support later tinyxml2
     depends_on("tinyxml2@6.2.0")
 
-    depends_on("c4h-md5@1.0")
+    depends_on("c4h-md5@1.0", when="@:2026-06-15")
+    depends_on("c4h-md5@1.1", when="@2026-08-19:")
     depends_on("clhep@2.4.7.2:")
     depends_on("py-pybind11@3.0.2:")
     depends_on("cpu-features@0.9.0: +shared")
@@ -50,6 +51,7 @@ class Stitched(CMakePackage):
     version("2026-05-27", commit="efcfa97330dcf9ab81d58e48c40f7f95fa363510")
     version("2026-05-28", commit="1f9f7dc0f4e499687b93458f3fbf02ea747b857e")
     version("2026-06-15", commit="53486de13cecbec085cc992acde3dab968cf88f3")
+    version("2026-08-19", commit="7cb37e68e2ffc61dc87bd31e458d2be026c796dd")
 
     variant(
         "cxxstd",
