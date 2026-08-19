@@ -25,6 +25,7 @@ class C4hMd5(CMakePackage):
 
     version("main", branch="main")
     version("1.0", commit="2afdaea16410ab54c500a38c22617273dfd408dd")
+    version("1.1", commit="56babaebae83437829f8262b7eb8c4a59db9f864")
 
     variant(
         "cxxstd",
