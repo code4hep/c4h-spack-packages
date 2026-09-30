@@ -21,7 +21,7 @@ class StitchedExample(CMakePackage):
     depends_on("cxx", type="build")
 
     depends_on("stitched@2026-08-19", when="@2026-08-21")
-    depends_on("stitched@2026-09-19", when="@2026-08-19:")
+    depends_on("stitched@2026-09-19:", when="@2026-08-19:")
 
     version("2026-08-21", commit="afce55fd2b990da192411886c70b83f5e06163ac")
     version("2026-09-19", commit="40932d3445d656e7edda9ad705aa37484a73e81b")
