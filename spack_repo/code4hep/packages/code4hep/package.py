@@ -17,6 +17,7 @@ class Code4hep(CMakePackage):
 
     #license("")
     version("main", branch="main")
+    version("2026-09-03", commit="96badfeaa3d15d6ca8ac3d7a66b92f7c2c30aa23")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
@@ -28,7 +29,7 @@ class Code4hep(CMakePackage):
     depends_on("edm4hep")
     depends_on("podio")
     depends_on("geant4")
-    depends_on("stitched")
+    depends_on("stitched@2026-08-21:", when="@2026-09-03:")
     depends_on("k4geo")
     depends_on("lcio")
     depends_on("boost +program_options")
@@ -39,17 +40,11 @@ class Code4hep(CMakePackage):
     
     def cmake_args(self):
         return [
-            self.define("C4H_ENABLE_TIDY", False),
+            # Code4hep links Geant4::Geant4 and Pythia8::Pythia8. Geant4's CMake
+            # config only sets variables (no imported target) and Pythia8 is an
+            # Autotools package with no CMake config, so the find modules in
+            # cmake-modules/ create these two targets.
             self.define("CMAKE_MODULE_PATH", os.path.join(self.package_dir, "cmake-modules")),
+            # FindPythia8.cmake locates Pythia8 through this prefix.
             self.define("PYTHIA8_ROOT", self.spec["pythia8"].prefix),
         ]
-    
-    @run_before("cmake")
-    def fix_plugin_install(self):
-        filter_file(
-            "# All plugin .so files must share one directory for edmPluginRefresh.",
-            'install(TARGETS ${_target} LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")\n\n'
-            "    # All plugin .so files must share one directory for edmPluginRefresh.",
-            "cmake/Code4hepBuildFunctions.cmake",
-            string=True,
-        )
