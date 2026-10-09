@@ -17,7 +17,7 @@ class Code4hep(CMakePackage):
 
     #license("")
     version("main", branch="main")
-    version("2026-09-03", commit="96badfeaa3d15d6ca8ac3d7a66b92f7c2c30aa23")
+    version("2026-10-09", commit="628f3172203e1b3e6602fdbe6c9f35f6df657e9b")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
@@ -29,7 +29,7 @@ class Code4hep(CMakePackage):
     depends_on("edm4hep")
     depends_on("podio")
     depends_on("geant4")
-    depends_on("stitched@2026-08-21:", when="@2026-09-03:")
+    depends_on("stitched@2026-09-30:", when="@2026-10-09:")
     depends_on("k4geo")
     depends_on("lcio")
     depends_on("boost +program_options")
@@ -37,7 +37,7 @@ class Code4hep(CMakePackage):
     depends_on("py-pybind11")
     depends_on("hepmc3")
     depends_on("pythia8")
-    
+
     def cmake_args(self):
         return [
             # Code4hep links Geant4::Geant4 and Pythia8::Pythia8. Geant4's CMake
