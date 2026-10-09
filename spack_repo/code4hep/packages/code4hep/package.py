@@ -7,7 +7,6 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
 
-
 class Code4hep(CMakePackage):
 
     homepage = "https://github.com/code4hep/Code4hep"
@@ -26,12 +25,12 @@ class Code4hep(CMakePackage):
 
     depends_on("root +geom +math")
     depends_on("dd4hep")
-    depends_on("edm4hep")
-    depends_on("podio")
-    depends_on("geant4")
+    depends_on("edm4hep@1.0")
+    depends_on("podio@1.7")
+    depends_on("geant4@11.5.0.beta")
     depends_on("stitched@2026-09-30:", when="@2026-10-09:")
-    depends_on("k4geo")
-    depends_on("lcio")
+    depends_on("k4geo@00-24")
+    depends_on("lcio@2.23.2")
     depends_on("boost +program_options")
     depends_on("catch2")
     depends_on("py-pybind11")
