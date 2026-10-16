@@ -6,7 +6,6 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
 
-
 class Stitched(CMakePackage):
     """Stitched is a data processing framework extracted from CMSSW."""
 
@@ -52,6 +51,7 @@ class Stitched(CMakePackage):
     version("2026-05-28", commit="1f9f7dc0f4e499687b93458f3fbf02ea747b857e")
     version("2026-06-15", commit="53486de13cecbec085cc992acde3dab968cf88f3")
     version("2026-08-19", commit="7cb37e68e2ffc61dc87bd31e458d2be026c796dd")
+    version("2026-08-21", commit="3e196df974f74ff4b1bc3b54e8319bdb0a258f5b")
     version("2026-09-19", commit="1675f9eb6d11ede03ba6be8b9eaced40d46d269a")
     version("2026-09-29", commit="e048007a2ea50bdee19f69bd7f62c2902aff5a26")
     version("2026-09-30", commit="9720a23b17415669d11025afb5b686c436b4717d")
