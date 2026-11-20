@@ -1,12 +1,14 @@
+# Pythia8 is built with Autotools and installs no CMake package config, so this
+# module locates its header and library (via CMAKE_PREFIX_PATH) and creates the
+# Pythia8::Pythia8 imported target.
+
 find_path(PYTHIA8_INCLUDE_DIR
     NAMES Pythia8/Pythia.h
-    HINTS ${PYTHIA8_ROOT} $ENV{PYTHIA8_ROOT}
     PATH_SUFFIXES include
 )
 
 find_library(PYTHIA8_LIBRARY
     NAMES pythia8
-    HINTS ${PYTHIA8_ROOT} $ENV{PYTHIA8_ROOT}
     PATH_SUFFIXES lib lib64
 )
 

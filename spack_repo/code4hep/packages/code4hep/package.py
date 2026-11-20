@@ -39,11 +39,7 @@ class Code4hep(CMakePackage):
 
     def cmake_args(self):
         return [
-            # Code4hep links Geant4::Geant4 and Pythia8::Pythia8. Geant4's CMake
-            # config only sets variables (no imported target) and Pythia8 is an
-            # Autotools package with no CMake config, so the find modules in
-            # cmake-modules/ create these two targets.
+            # The find modules in cmake-modules/ provide the Geant4::Geant4 and
+            # Pythia8::Pythia8 targets that Code4hep links.
             self.define("CMAKE_MODULE_PATH", os.path.join(self.package_dir, "cmake-modules")),
-            # FindPythia8.cmake locates Pythia8 through this prefix.
-            self.define("PYTHIA8_ROOT", self.spec["pythia8"].prefix),
         ]
