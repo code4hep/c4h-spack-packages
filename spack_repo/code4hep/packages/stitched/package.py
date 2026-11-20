@@ -6,6 +6,7 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
 
+
 class Stitched(CMakePackage):
     """Stitched is a data processing framework extracted from CMSSW."""
 
