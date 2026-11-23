@@ -1,0 +1,27 @@
+name: Trigger c4h-dist full image build
+on:
+  push:
+    branches: [main]
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    container: almalinux:9
+    steps:
+      # Token from the GitHub App
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        if: vars.C4H_APP_CLIENT_ID != ''
+        with:
+          client-id: ${{ vars.C4H_APP_CLIENT_ID }}
+          private-key: ${{ secrets.C4H_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: c4h-dist
+          permission-actions: write
+      - name: Dispatch full.yaml in c4h-dist
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          curl -fsSL -X POST \
+            -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository_owner }}/c4h-dist/actions/workflows/full.yaml/dispatches \
+            -d '{"ref":"main","inputs":{"packages_ref":"${{ github.sha }}"}}'
